@@ -27,3 +27,6 @@ Partager les information dont votre collègue a besoin
 - Attacher à chacune de VMs un disque de données avec les cartactéristiques suivantes (size=20 GB et storage account tye= Standard_LRS).
 - Faire en sorte que les disques OS et Data de chacune des 2 VMs soient supprimés avec les VMs en cas de leur suppression.
 - noter les erreurs rencontrés au cas où vous êtes sûr qu'il ne s'agissait pas d'une erreur de configuration.
+
+# Schema
+![Ling-Terraform-Brief12](https://github.com/lingcode72/Ling_Terraform_Brief12/assets/66947285/9f3aaa31-56b0-4378-9038-9261abe24775)
