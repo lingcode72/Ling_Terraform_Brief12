@@ -1,4 +1,4 @@
-#Create managed disk
+#Create managed disk with 20GB as demanded
  resource "azurerm_managed_disk" "test" {
    count                = 2
    name                 = "datadisk_existing_${count.index}"
@@ -25,6 +25,7 @@ resource "azurerm_virtual_machine" "test" {
    # Uncomment this line to delete the data disks automatically when deleting the VM
     delete_data_disks_on_termination = true
 
+  #create storage image
    storage_image_reference {
      publisher = "Canonical"
      offer     = "UbuntuServer"
@@ -32,6 +33,7 @@ resource "azurerm_virtual_machine" "test" {
      version   = "latest"
    }
 
+  #create storage os disk
    storage_os_disk {
      name              = "myosdisk${count.index}"
      caching           = "ReadWrite"
@@ -39,7 +41,7 @@ resource "azurerm_virtual_machine" "test" {
      managed_disk_type = "Standard_LRS"
    }
 
- 
+  #create storage data disk
    storage_data_disk {
      name            = element(azurerm_managed_disk.test.*.name, count.index)
      managed_disk_id = element(azurerm_managed_disk.test.*.id, count.index)
@@ -47,13 +49,14 @@ resource "azurerm_virtual_machine" "test" {
      lun             = 1
      disk_size_gb    = element(azurerm_managed_disk.test.*.disk_size_gb, count.index)
    }
-
+  #create variables of os profile 
    os_profile {
      computer_name  = "hostname"
      admin_username = "testadmin"
      admin_password = "Password1234!"
    }
 
+  #create os profile linux config
    os_profile_linux_config {
      disable_password_authentication = false
    }
