@@ -22,3 +22,12 @@ output "Ip_loadbalancer" {
   value = azurerm_public_ip.test.id
 }
 
+#output vm1's private ip address
+output "private_ip_first_VM" {
+  value = azurerm_network_interface.test[0].private_ip_address
+}
+
+#output vm2's private ip address
+output "private_ip_second_VM" {
+  value = azurerm_network_interface.test[1].private_ip_address
+} 
